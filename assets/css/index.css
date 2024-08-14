@@ -1,10 +1,30 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "Neometric";
+  src: url(../font/Neometric-Alt-Black.otf);
+}
 @keyframes spin {
   0% {
     transform: rotate(0);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+@keyframes shake {
+  0% {
+    transform: rotate(1deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(-1deg);
   }
 }
 @keyframes floater {
@@ -21,7 +41,7 @@
 body {
   font-size: 16px;
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
+  font-family: "Neometric";
   background-color: #fff;
   overflow-x: hidden;
 }
@@ -61,7 +81,7 @@ img {
   border: 1px solid #000;
   border-radius: 500px;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: "Neometric";
   color: #000 !important;
   background: transparent;
   text-align: center;
@@ -80,11 +100,12 @@ img {
   left: -4px;
   top: -4px;
   margin-left: 10px;
+  border-radius: 12px;
 }
 .btn-3d::after {
   position: absolute;
   content: "";
-  border-radius: 5px;
+  border-radius: 12px;
   background: #000;
   width: 100%;
   height: 100%;
@@ -106,14 +127,14 @@ img {
 .heading-block .badge {
   padding: 0;
   color: #ff92b5;
-  font-family: "Poppins", sans-serif;
+  font-family: "Neometric";
   font-weight: 500;
   line-height: 24px;
   text-transform: uppercase;
   font-size: 16px;
 }
 .heading-block .title {
-  font-family: "Poppins", sans-serif;
+  font-family: "Neometric";
   font-size: 48px;
   line-height: 69.5px;
   text-transform: capitalize;
@@ -245,16 +266,17 @@ img {
 }
 #header .social-list .social-item .image {
   display: block;
-  width: 32px;
+  width: 52px;
   aspect-ratio: 1;
   overflow: hidden;
   transition: all ease 0.75s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: unset;
 }
 #header .social-list .social-item .image img {
-  filter: invert(1);
-}
-#header .social-list .social-item .image:hover {
-  transform: translateY(-10px);
+  width: 70%;
 }
 #header .menu-button {
   display: none;
@@ -298,6 +320,7 @@ img {
 #banner .banner-image {
   border-radius: 20px;
   overflow: hidden;
+  animation: shake 0.1s infinite;
 }
 @media only screen and (max-width: 767px) {
   #banner .banner-image {
@@ -322,6 +345,11 @@ img {
   margin-bottom: 40px;
   font-weight: 600;
 }
+#check .check-input .note {
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 15px;
+}
 #check .check-result {
   width: 50%;
 }
@@ -329,9 +357,13 @@ img {
   background: transparent;
   border-radius: 5px;
   outline: none;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.3);
   padding: 10px 15px;
-  width: 70%;
+  width: calc(100% - 120px);
+  transition: all ease 0.2s;
+}
+#check #userInput:focus {
+  border-color: #000;
 }
 #check #checkButton {
   padding: 10px 15px;
@@ -340,6 +372,20 @@ img {
   border: 2px solid #000;
   background: #fff;
   margin-left: 10px;
+  transition: all ease 0.2s;
+}
+#check #checkButton:hover {
+  background: #000;
+  color: #fff;
+}
+#check #checkButton.disable {
+  border-color: rgba(0, 0, 0, 0.1019607843);
+  color: rgba(0, 0, 0, 0.1019607843);
+  cursor: default;
+}
+#check #checkButton.disable:hover {
+  background: #fff !important;
+  color: rgba(0, 0, 0, 0.1019607843) !important;
 }
 #check .result-item {
   display: flex;
@@ -376,6 +422,36 @@ img {
   animation: spin linear 0.5s infinite;
 }
 
+#quest {
+  margin-top: 100px;
+}
+#quest .heading-block {
+  margin-bottom: 50px;
+}
+#quest .heading-block .title {
+  text-align: center;
+}
+#quest .quest-item {
+  display: flex;
+  justify-content: unset;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  background: #000;
+  padding: 20px;
+}
+#quest .quest-item::after {
+  background: #fff;
+}
+#quest .quest-item a {
+  color: #fff;
+  display: block;
+  flex: 1;
+}
+#quest .quest-item .note {
+  color: #31b731;
+}
+
 #footer {
   margin-top: 100px;
 }
@@ -386,16 +462,16 @@ img {
   align-items: center;
   gap: 24px;
 }
-#footer .social-list .social-item {
-  width: 32px;
+#footer .social-list .social-item .image {
+  width: 52px;
   aspect-ratio: 1;
-}
-#footer .social-list .social-item:hover img {
-  transform: scale(1.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: unset;
 }
 #footer .social-list .social-item img {
-  filter: invert(1);
-  transition: all ease 0.5s;
+  width: 70%;
 }
 #footer .text {
   font-size: 16px;
@@ -411,4 +487,28 @@ img {
   line-height: 24px;
   margin-bottom: 20px;
   text-align: center;
+}
+
+@media only screen and (max-width: 991px) {
+  #check .check-wrapper {
+    flex-direction: column;
+    gap: 50px;
+  }
+  #check .check-input,
+  #check .check-result {
+    width: 100%;
+  }
+  #check .check-input .title {
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 576px) {
+  #banner .title {
+    font-size: 25px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #quest .quest-item {
+    flex-direction: column;
+  }
 }

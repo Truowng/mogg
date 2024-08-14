@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "Neometric";
+  src: url(../font/Neometric-Alt-Black.otf);
+}
 // COLOR
 
 $white: #fff;
@@ -7,7 +10,7 @@ $black: #000;
 $pink: #ff92b5;
 
 // FONT
-$font-poppins: "Poppins", sans-serif;
+$font-neometric: "Neometric";
 
 // FUNCTION
 @mixin flex($j, $a, $g) {
@@ -24,6 +27,23 @@ $font-poppins: "Poppins", sans-serif;
 
   100% {
     transform: rotate(360deg);
+  }
+}
+@keyframes shake {
+  0% {
+    transform: rotate(1deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+  75% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(-1deg);
   }
 }
 
@@ -58,6 +78,11 @@ $font-poppins: "Poppins", sans-serif;
   }
 }
 
+@mixin extra-mobile {
+  @media only screen and (max-width: 576px) {
+    @content;
+  }
+}
 @mixin mobile {
   @media only screen and (max-width: 480px) {
     @content;
