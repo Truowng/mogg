@@ -258,7 +258,6 @@ img {
   .banner-image {
     border-radius: 20px;
     overflow: hidden;
-    animation: shake 0.1s infinite;
     @include landscape-phone {
       margin-top: 50px;
     }
@@ -282,6 +281,22 @@ img {
       font-size: 14px;
       font-weight: 300;
       margin-top: 15px;
+    }
+  }
+
+  .token-wrapper {
+    padding: 10px 15px;
+    background-color: $black;
+    width: fit-content;
+    border-radius: 12px;
+    margin-top: 20px;
+    visibility: hidden;
+    .token {
+      color: #31b731;
+      font-size: 16px;
+    }
+    &.claimed {
+      visibility: visible;
     }
   }
 
@@ -383,9 +398,6 @@ img {
       display: block;
       flex: 1;
     }
-    .note {
-      color: #31b731;
-    }
   }
 }
 
@@ -448,9 +460,6 @@ img {
       font-size: 25px;
     }
   }
-}
-
-@include mobile {
   #quest {
     .quest-item {
       flex-direction: column;

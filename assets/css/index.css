@@ -320,7 +320,6 @@ img {
 #banner .banner-image {
   border-radius: 20px;
   overflow: hidden;
-  animation: shake 0.1s infinite;
 }
 @media only screen and (max-width: 767px) {
   #banner .banner-image {
@@ -349,6 +348,22 @@ img {
   font-size: 14px;
   font-weight: 300;
   margin-top: 15px;
+}
+#check .token-wrapper {
+  padding: 10px 15px;
+  background-color: #000;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 12px;
+  margin-top: 20px;
+  visibility: hidden;
+}
+#check .token-wrapper .token {
+  color: #31b731;
+  font-size: 16px;
+}
+#check .token-wrapper.claimed {
+  visibility: visible;
 }
 #check .check-result {
   width: 50%;
@@ -448,9 +463,6 @@ img {
   display: block;
   flex: 1;
 }
-#quest .quest-item .note {
-  color: #31b731;
-}
 
 #footer {
   margin-top: 100px;
@@ -506,8 +518,6 @@ img {
   #banner .title {
     font-size: 25px;
   }
-}
-@media only screen and (max-width: 480px) {
   #quest .quest-item {
     flex-direction: column;
   }

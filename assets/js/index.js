@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const checkButton = document.getElementById("checkButton");
   const userInput = document.getElementById("userInput");
   const results = document.querySelectorAll("#check .result-item");
+  const token = document.querySelector(".token-wrapper .token .num");
+  const tokenWrapper = document.querySelector(".token-wrapper");
 
   const successImg = "./assets/images/success.svg";
   const failedImg = "./assets/images/failed.svg";
@@ -55,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Lắng nghe sự kiện nhấn nút
   checkButton.addEventListener("click", function () {
-    const inputValue = userInput.value; // Lấy giá trị từ input
+    const inputValue = userInput.value;
 
     if (inputValue != "") {
       // Thêm trạng thái "loading" cho tất cả các cột
@@ -66,18 +68,20 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       checkButton.classList.add("disable");
       checkButton.disable = true;
-    }
+      tokenWrapper.classList.remove("claimed");
 
-    // Sau khi fetch dữ liệu xong, kiểm tra dữ liệu
-    if (isDataFetched) {
-      checkData(fetchedData, inputValue);
-    } else {
-      // Trường hợp fetch dữ liệu chưa xong, đợi fetch xong rồi kiểm tra
-      fetchData().then(() => checkData(fetchedData, inputValue));
+      // Sau khi fetch dữ liệu xong, kiểm tra dữ liệu
+      if (isDataFetched) {
+        checkData(fetchedData, inputValue);
+      } else {
+        // Trường hợp fetch dữ liệu chưa xong, đợi fetch xong rồi kiểm tra
+        fetchData().then(() => checkData(fetchedData, inputValue));
+      }
     }
   });
 
   function checkData(data, input) {
+    let count = 0;
     // Thực hiện kiểm tra hoặc xử lý dữ liệu với giá trị nhập từ người dùng
     checkButton.disable = false;
     checkButton.classList.remove("disable");
@@ -85,6 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // results[index].classList.remove("loading");
       results[index].classList.toggle("loading");
       if (data[wallet].includes(input)) {
+        count++;
+        calculateTokens(count);
         results[index].classList.add("success");
         results[index]
           .querySelector(".icon img")
@@ -96,6 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
           .setAttribute("src", failedImg);
       }
     });
+    tokenWrapper.classList.add("claimed");
+  }
+
+  function calculateTokens(number) {
+    token.innerHTML = number * 10;
   }
 });
 
